@@ -24,28 +24,46 @@ with open(csvpath, newline='') as csvfile:
     #================================================================
     # WHAT THE HELL AM I DOING?
     #================================================================
-    
-    # Total the number of months included in the dataset using a List
-    #-----------------------------------------------------------------
 
-    # Create an empty list to put your months in
+    # Create empty lists to put your months and profits and losses in
     date_list = []
+    profit_loss_list = []
 
-    # loop through your csv file and add each row in the first column (0) to your date_list
+    # add all the rows to each list by looping through the csv file...
     for row in csvreader:
+        #...add each row in the first column (0) to your date_list
         date_list.append(row[0])
+        #...and add each row in the second column (1) to your profit_loss_list
+        profit_loss_list.append(row[1])
+
+        # TOTAL THE NUMBER OF MONTHS INCLUDED IN THE DATASET
+        #-----------------------------------------------------------------
         # Calculate your total months by counting the length of the date_list
         total_months = len(date_list)
-    # Print your answer :)
-    print(f"Total Months: {total_months}")
 
+        # THE NET TOTAL AMOUNT OF "PROFIT/LOSSES" OVER THE ENTIRE PERIOD
+        #-----------------------------------------------------------------
+        # convert all items in the profit_loss_list to integers so you can add them together. 
+        # Use a comprehension list (list items default to strings)
+        profit_loss_list = [int(i) for i in profit_loss_list]
+        # calculate the total of the profit_loss_list by summing the column
+        total_profit_loss = sum(profit_loss_list)
+
+###================================================================
+## PRINT THE ANSWERS TO TERMINAL
+###================================================================
+    print("""
+    ==========================================
+                FINANCIAL ANALYSIS
+    ==========================================""")
+    print(f"------Total Months: {total_months}")
+    print(f"------Total: ${total_profit_loss}.00")
+
+###================================================================
+## EXPORT THE RESULTS TO TEXT FILE
+###================================================================
     
-
-       
-
-    # The net total amount of "Profit/Losses" over the entire period
-    
-    # The average of changes in of "Profit/Losses" over the entire period
+        
 
     # The greatest increase in profits (date and amount) over the entire period
 
