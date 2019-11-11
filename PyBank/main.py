@@ -1,4 +1,3 @@
-
 #================================================================
 # IMPORT THE MODULES & DEFINE THE PATH
 #================================================================
@@ -31,9 +30,9 @@ with open(csvpath, newline='') as csvfile:
 
     # add all the rows to each list by looping through the csv file...
     for row in csvreader:
-        #...add each row in the first column (0) to your date_list
+        #...add each row in the first column (index = 0) to your date_list
         date_list.append(row[0])
-        #...and add each row in the second column (1) to your profit_loss_list
+        #...and add each row in the second column (index = 1) to your profit_loss_list
         profit_loss_list.append(row[1])
 
         # TOTAL THE NUMBER OF MONTHS INCLUDED IN THE DATASET
@@ -98,7 +97,7 @@ with open(csvpath, newline='') as csvfile:
                 FINANCIAL ANALYSIS
     ==========================================""")
     print(f"    Total Months: {total_months}")
-    print(f"    Total: ${total_profit_loss}.00")
+    print(f"    Total: ${total_profit_loss}")
     print(f"    Average Change: ${average_change}")
     print(f"    Greatest Increase in Profits: ???DATE??? (${greatest_increase_amount})")
     print(f"    Greatest Decrease in Profits: ???DATE??? (${greatest_decrease_amount}) ")
@@ -107,5 +106,18 @@ with open(csvpath, newline='') as csvfile:
 ###================================================================
 ## EXPORT THE RESULTS TO TEXT FILE
 ###================================================================
+#specify the file to write to
+output_path =os.path.join("pybank_results.csv")
+
+# Open the file using "write" mode. Specidy the variable to hold its contents
+with open(output_path, 'w', newline='') as resultsfile:
+        #initialize the csv.writer
+        csvwriter = csv.writer(resultsfile, delimiter=',')
+        #write first row
+        csvwriter.writerow(["FINANCIAL ANALYSIS"])
+        csvwriter.writerow(["Total Months",total_months])
+        csvwriter.writerow(["Total",f"${total_profit_loss}"])
+        csvwriter.writerow(["Greatest Increase in Profits:","mm-yyyy",f"${greatest_increase_amount}"])
+        csvwriter.writerow(["Greatest Decrease in Profits:","mm-yyyy",f"${greatest_decrease_amount}"])
 
 
