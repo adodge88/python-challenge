@@ -49,6 +49,38 @@ with open(csvpath, newline='') as csvfile:
         # calculate the total of the profit_loss_list by summing the column
         total_profit_loss = sum(profit_loss_list)
 
+    # THE AVERAGE OF CHANGES OF "PROFIT/LOSSES" OVER THE ENTIRE PERIOD
+    #-----------------------------------------------------------------
+    #create empty list to store change values in
+    change_list = []
+    #set the prev_entry to the first item in the list
+    prev_entry = 0
+    #print(prev_entry)
+
+    #loop through the profit_loss_list and...
+    for current_entry in profit_loss_list:
+        #...determine the change by taking the current entry and subtracting the previouis one
+       change = current_entry - prev_entry
+        #add that change value to the change list
+       change_list.append(change)
+        #update the prev_entry to the current_entry and continue your loop
+       prev_entry = current_entry
+    #remove the first entry from the list because there is no prev entry to make a change from
+    change_list.pop(0)
+    #print(change_list)
+
+    # convert all items in the profit_loss_list to integers so you can add them together. 
+    # Use a comprehension list (list items default to strings)
+    change_list = [int(entry) for entry in change_list]
+
+    num_of_changes = len(change_list)
+    total_of_change = sum(change_list)
+    #calculate avg change and round it to only 2 decimal points
+    average_change = round((total_of_change / num_of_changes),2)
+    #average_change_rounded = round(average_change,2)
+    #print(average_change)
+        
+
 ###================================================================
 ## PRINT THE ANSWERS TO TERMINAL
 ###================================================================
@@ -56,8 +88,12 @@ with open(csvpath, newline='') as csvfile:
     ==========================================
                 FINANCIAL ANALYSIS
     ==========================================""")
-    print(f"------Total Months: {total_months}")
-    print(f"------Total: ${total_profit_loss}.00")
+    print(f"    Total Months: {total_months}")
+    print(f"    Total: ${total_profit_loss}.00")
+    print(f"    Average Change: ${average_change}")
+    print(f"    Greatest Increase in Profits: ??? ")
+    print(f"    Greatest Decrease in Profits: ??? ")
+    print("    ------------------------------------------")
 
 ###================================================================
 ## EXPORT THE RESULTS TO TEXT FILE
