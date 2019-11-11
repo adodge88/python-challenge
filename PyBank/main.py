@@ -79,7 +79,16 @@ with open(csvpath, newline='') as csvfile:
     average_change = round((total_of_change / num_of_changes),2)
     #average_change_rounded = round(average_change,2)
     #print(average_change)
-        
+
+    # THE GREATEST INCREASE OF CHANGES OF "PROFIT/LOSSES" OVER THE ENTIRE PERIOD
+    #-----------------------------------------------------------------
+    greatest_increase_amount = max(change_list)
+    #print(greatest_increase_amount)
+
+    # THE GREATEST DECREASE OF CHANGES OF "PROFIT/LOSSES" OVER THE ENTIRE PERIOD
+    #-----------------------------------------------------------------
+    greatest_decrease_amount = min(change_list)
+    #print(greatest_decrease_amount)
 
 ###================================================================
 ## PRINT THE ANSWERS TO TERMINAL
@@ -91,18 +100,12 @@ with open(csvpath, newline='') as csvfile:
     print(f"    Total Months: {total_months}")
     print(f"    Total: ${total_profit_loss}.00")
     print(f"    Average Change: ${average_change}")
-    print(f"    Greatest Increase in Profits: ??? ")
-    print(f"    Greatest Decrease in Profits: ??? ")
+    print(f"    Greatest Increase in Profits: ???DATE??? (${greatest_increase_amount})")
+    print(f"    Greatest Decrease in Profits: ???DATE??? (${greatest_decrease_amount}) ")
     print("    ------------------------------------------")
 
 ###================================================================
 ## EXPORT THE RESULTS TO TEXT FILE
 ###================================================================
-    
-        
-
-    # The greatest increase in profits (date and amount) over the entire period
-
-    # The greatest decrease in losses (date and amount) over the entire period
 
 
