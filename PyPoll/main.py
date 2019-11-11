@@ -45,9 +45,12 @@ with open(csvpath, newline='') as csvfile:
 
     # A COMPLETE LIST OF THE CANDIDATES WHO RECEIVED VOTES
     #-----------------------------------------------------------------
+    #make an empty list to store the unique candidates in
     unique_candidates = []
 
+    #loop through the complete candidate_list...
     for candidate in candidate_list:
+        #...if the candidates name is not already in the unique_candidates list add it, otherwise go to next candidate in loop
         if candidate not in unique_candidates:
             unique_candidates.append(candidate)
 
@@ -72,22 +75,44 @@ with open(csvpath, newline='') as csvfile:
 
     # THE WINNER OF THE POPULAR VOTE
     #-----------------------------------------------------------------
-    
-
-
+    #researched a function to find the most frequent entries in the candidate list
+    def most_freq(candidate_list):
+      return max(set(candidate_list), key=candidate_list.count)
+    #print(most_freq(candidate_list))
 
 ###================================================================
 ## PRINT THE ANSWERS TO TERMINAL
 ###================================================================
-    print("""
+print("""
     ==========================================
                 ELECTION RESULTS
     ==========================================""")
-    print(f"    Total Votes: {total_votes}")
-    print("    ------------------------------------------")
-    print(f"    {unique_candidates[0]}:     {khan_percent}%     ({khan_votes})")
-    print(f"    {unique_candidates[1]}:     {correy_percent}%     ({correy_votes})")
-    print(f"    {unique_candidates[2]}:     {li_percent}%     ({li_votes})")
-    print(f"    {unique_candidates[3]}:     {otoole_percent}%     ({otoole_votes})")
-    print("    ------------------------------------------")
-    print(f"    Winner:     ???")
+print(f"    Total Votes: {total_votes}")
+print("    ------------------------------------------")
+print(f"    {unique_candidates[0]}:     {khan_percent}%     ({khan_votes})")
+print(f"    {unique_candidates[1]}:     {correy_percent}%     ({correy_votes})")
+print(f"    {unique_candidates[2]}:     {li_percent}%     ({li_votes})")
+print(f"    {unique_candidates[3]}:     {otoole_percent}%     ({otoole_votes})")
+print("    ------------------------------------------")
+print(f"    Winner:     {most_freq(candidate_list)}")
+
+###================================================================
+## EXPORT THE RESULTS TO TEXT FILE
+###================================================================
+#specify the file to write to
+output_path =os.path.join("pypoll_results.csv")
+
+# Open the file using "write" mode. Specidy the variable to hold its contents
+with open(output_path, 'w', newline='') as resultsfile:
+        #initialize the csv.writer
+        csvwriter = csv.writer(resultsfile, delimiter=',')
+        #write first row
+        csvwriter.writerow(["ELECTION RESULTS"])
+        csvwriter.writerow(["Total Votes",total_votes])
+        csvwriter.writerow([""])
+        csvwriter.writerow([unique_candidates[0],f"{khan_percent}%",f"({khan_votes})"])
+        csvwriter.writerow([unique_candidates[1],f"{correy_percent}%",f"({correy_votes})"])
+        csvwriter.writerow([unique_candidates[2],f"{li_percent}%",f"({li_votes})"])
+        csvwriter.writerow([unique_candidates[3],f"{otoole_percent}%",f"({otoole_votes})"])
+        csvwriter.writerow([""])
+        csvwriter.writerow(["Winner",most_freq(candidate_list)])
