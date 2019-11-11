@@ -54,21 +54,25 @@ with open(csvpath, newline='') as csvfile:
     #testeroo
     # print(unique_candidates) printed --> ['Khan', 'Correy', 'Li', "O'Tooley"]
 
-    # THE PERCENTAGE OF VOTES EACH CANDIDATE WON
-    #-----------------------------------------------------------------
-
-
-
     # THE TOTAL # OF VOTES EACH CANDIDATE WON
     #-----------------------------------------------------------------
+    #count the number of votes for each candidate in the list by their index in the list
     khan_votes = candidate_list.count(unique_candidates[0])
     correy_votes = candidate_list.count(unique_candidates[1])
     li_votes = candidate_list.count(unique_candidates[2])
     otoole_votes = candidate_list.count(unique_candidates[3])
 
+    # THE PERCENTAGE OF VOTES EACH CANDIDATE WON
+    #-----------------------------------------------------------------
+    #calculate the percent of votes for each candidate and round to whole num
+    khan_percent = round(khan_votes / total_votes * 100)
+    correy_percent = round(correy_votes/ total_votes * 100)
+    li_percent = round(li_votes / total_votes * 100)
+    otoole_percent = round(otoole_votes / total_votes * 100)
+
     # THE WINNER OF THE POPULAR VOTE
     #-----------------------------------------------------------------
-
+    
 
 
 
@@ -81,9 +85,9 @@ with open(csvpath, newline='') as csvfile:
     ==========================================""")
     print(f"    Total Votes: {total_votes}")
     print("    ------------------------------------------")
-    print(f"    {unique_candidates[0]}:     ???     ({khan_votes})")
-    print(f"    {unique_candidates[1]}:     ???     ({correy_votes})")
-    print(f"    {unique_candidates[2]}:     ???     ({li_votes})")
-    print(f"    {unique_candidates[3]}:     ???     ({otoole_votes})")
+    print(f"    {unique_candidates[0]}:     {khan_percent}%     ({khan_votes})")
+    print(f"    {unique_candidates[1]}:     {correy_percent}%     ({correy_votes})")
+    print(f"    {unique_candidates[2]}:     {li_percent}%     ({li_votes})")
+    print(f"    {unique_candidates[3]}:     {otoole_percent}%     ({otoole_votes})")
     print("    ------------------------------------------")
     print(f"    Winner:     ???")
