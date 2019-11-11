@@ -51,7 +51,25 @@ with open(csvpath, newline='') as csvfile:
         if candidate not in unique_candidates:
             unique_candidates.append(candidate)
 
-    print(unique_candidates)
+    #testeroo
+    # print(unique_candidates) printed --> ['Khan', 'Correy', 'Li', "O'Tooley"]
+
+    # THE PERCENTAGE OF VOTES EACH CANDIDATE WON
+    #-----------------------------------------------------------------
+
+
+
+    # THE TOTAL # OF VOTES EACH CANDIDATE WON
+    #-----------------------------------------------------------------
+    khan_votes = candidate_list.count(unique_candidates[0])
+    correy_votes = candidate_list.count(unique_candidates[1])
+    li_votes = candidate_list.count(unique_candidates[2])
+    otoole_votes = candidate_list.count(unique_candidates[3])
+
+    # THE WINNER OF THE POPULAR VOTE
+    #-----------------------------------------------------------------
+
+
 
 
 ###================================================================
@@ -63,9 +81,9 @@ with open(csvpath, newline='') as csvfile:
     ==========================================""")
     print(f"    Total Votes: {total_votes}")
     print("    ------------------------------------------")
-    print(f"    {unique_candidates[0]}:     ???     (???)")
-    print(f"    {unique_candidates[1]}:     ???     (???)")
-    print(f"    {unique_candidates[2]}:     ???     (???)")
-    print(f"    {unique_candidates[3]}:     ???     (???)")
+    print(f"    {unique_candidates[0]}:     ???     ({khan_votes})")
+    print(f"    {unique_candidates[1]}:     ???     ({correy_votes})")
+    print(f"    {unique_candidates[2]}:     ???     ({li_votes})")
+    print(f"    {unique_candidates[3]}:     ???     ({otoole_votes})")
     print("    ------------------------------------------")
     print(f"    Winner:     ???")
