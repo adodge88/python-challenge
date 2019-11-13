@@ -89,6 +89,20 @@ with open(csvpath, newline='') as csvfile:
     greatest_decrease_amount = min(change_list)
     #print(greatest_decrease_amount)
 
+    ################## FIGURE OUT WHAT THE DATE IS #######################
+    #search for the index of the greatest increase amount within the change_list
+    increase_index = change_list.index(greatest_increase_amount)
+    ##print(greatest_index)
+    #now use the increase_index + 1 (because we took away the first value in the change_list) and find the value in the date_list
+    increase_date = date_list[(increase_index+1)]
+    #print(greatest_date)
+
+    #repeat the above for the decrease
+    decrease_index = change_list.index(greatest_decrease_amount)
+    decrease_date = date_list[decrease_index+1]
+
+
+
 ###================================================================
 ## PRINT THE ANSWERS TO TERMINAL
 ###================================================================
@@ -99,8 +113,8 @@ with open(csvpath, newline='') as csvfile:
     print(f"    Total Months: {total_months}")
     print(f"    Total: ${total_profit_loss}")
     print(f"    Average Change: ${average_change}")
-    print(f"    Greatest Increase in Profits: ???DATE??? (${greatest_increase_amount})")
-    print(f"    Greatest Decrease in Profits: ???DATE??? (${greatest_decrease_amount}) ")
+    print(f"    Greatest Increase in Profits: {increase_date} (${greatest_increase_amount})")
+    print(f"    Greatest Decrease in Profits: {decrease_date} (${greatest_decrease_amount}) ")
     print("    ------------------------------------------")
 
 ###================================================================
@@ -117,7 +131,7 @@ with open(output_path, 'w', newline='') as resultsfile:
         csvwriter.writerow(["FINANCIAL ANALYSIS"])
         csvwriter.writerow(["Total Months",total_months])
         csvwriter.writerow(["Total",f"${total_profit_loss}"])
-        csvwriter.writerow(["Greatest Increase in Profits:","mm-yyyy",f"${greatest_increase_amount}"])
-        csvwriter.writerow(["Greatest Decrease in Profits:","mm-yyyy",f"${greatest_decrease_amount}"])
+        csvwriter.writerow(["Greatest Increase in Profits:",f"{increase_date}",f"${greatest_increase_amount}"])
+        csvwriter.writerow(["Greatest Decrease in Profits:",f"{decrease_date}",f"${greatest_decrease_amount}"])
 
 
